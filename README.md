@@ -1,9 +1,23 @@
-# Stargazer Extension
+# Stargazer Extension (Ledger)
 
-Started with
-[web-extension-starter](https://github.com/abhijithvijayan/web-extension-starter)
+This is an unofficial release of Stargazer Wallet with Tessellation v2 support for the unofficial Constellation Ledger app.
 
 ## Getting Started
+
+## Option 1: Install
+
+### Install Chrome Extension
+
+- Download the latest release [here](https://github.com/buzzgreyday/stargazer-wallet-ledger/releases/latest)
+- Extract the `zip` somewhere nice
+- Open Chrome, click `extensions` and `enable developer mode`
+- Locate the nice place and open the unzipped directory, then import
+
+### Build and Load the Constellatio Ledger App
+
+Since the app (v1.0.7) isn't officially supported, we'll have to build it:
+
+## Option 2: Build
 
 Ensure you have
 
