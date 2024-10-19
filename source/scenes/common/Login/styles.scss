@@ -1,0 +1,59 @@
+@import '~assets/styles/variables';
+
+.home {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  min-height: 100%;
+  background: $primary;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 24px;
+  box-sizing: border-box;
+
+  .title {
+    margin-top: 24px;
+  }
+
+  .logo {
+    margin-top: 36px;
+    margin-bottom: 48px;
+    width: 192px;
+  }
+
+  .restoreFromSeedLink {
+    font-size: 14px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    .inputWrapper {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      .errorWrapper {
+        display: flex;
+        align-items: center;
+        height: 24px;
+      }
+      .errorWrapper span {
+        color: $red;
+        font-size: 12px;
+      }
+    }
+    .started {
+      width: 100%;
+    }
+  }
+
+  .recoverContainer {
+    position: absolute;
+    bottom: 24px;
+  }
+}

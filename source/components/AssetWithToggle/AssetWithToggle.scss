@@ -1,0 +1,66 @@
+@import '~assets/styles/variables';
+
+.cardContainer {
+  height: 64px;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: row;
+  align-items: center;
+}
+
+.assetIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  margin-left: 16px;
+}
+
+.imageIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+}
+
+.dagIcon {
+  width: 22px;
+  height: 22px;
+}
+
+.toggleContainer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+.assetInfo {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: 12px;
+}
+
+:global .MuiSwitch-colorPrimary {
+  color: $white !important;
+}
+
+:global .MuiSwitch-colorSecondary {
+  color: $white !important;
+}
+
+:global .MuiSwitch-colorPrimary.Mui-checked + .MuiSwitch-track {
+  background-color: $primary_lighter_1 !important;
+  opacity: 1 !important;
+}
+
+:global .MuiSwitch-colorSecondary.Mui-checked + .MuiSwitch-track {
+  background-color: $primary_lighter_3 !important;
+  opacity: 1 !important;
+}

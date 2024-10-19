@@ -1,0 +1,42 @@
+@import '~assets/styles/variables';
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-top: 8px;
+
+  .titleContainer {
+    display: flex;
+    margin-bottom: 8px;
+
+    .title {
+      color: $red_700;
+    }
+  }
+
+  .subtitleContainer {
+    display: flex;
+  }
+
+  .walletContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+
+    .iconContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 64px;
+      width: 64px;
+      border-radius: 32px;
+      background-color: $white;
+    }
+
+    .walletLabel {
+      margin-top: 12px;
+    }
+  }
+}

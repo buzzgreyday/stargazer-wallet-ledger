@@ -1,0 +1,68 @@
+@import '~assets/styles/variables';
+
+.container {
+  flex-direction: column;
+  padding: 24px 16px;
+  overflow: auto;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.buttonContainer {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.dropdownContainer {
+  margin-top: 12px;
+}
+
+.itemContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.button {
+  width: 358px;
+}
+
+.errorLabel {
+  margin-top: 20px;
+}
+
+.phraseInputContainer {
+  margin-bottom: 8px;
+}
+
+.checkboxContainer {
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: row;
+}
+
+.checkboxTextContainer {
+  margin-left: 8px;
+}
+
+.checkboxText {
+  font-weight: 500;
+}
+
+.modalTitle {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.modalButton {
+  width: 100%;
+  margin-top: 12px;
+}

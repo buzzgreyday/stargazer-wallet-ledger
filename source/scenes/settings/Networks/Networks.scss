@@ -1,0 +1,38 @@
+@import '~assets/styles/variables';
+
+.wrapper {
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-top: 24px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: $gray-dark;
+  }
+
+  &:hover {
+    background: initial;
+    cursor: initial;
+  }
+}
+
+.containerBase {
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.buttonContainer {
+  position: absolute;
+  width: 90%;
+  align-self: center;
+  bottom: 20px;
+}
+
+.addNetwork {
+  width: 100%;
+}

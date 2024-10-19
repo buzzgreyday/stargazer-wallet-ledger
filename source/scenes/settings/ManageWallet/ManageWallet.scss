@@ -1,0 +1,106 @@
+@import '~assets/styles/variables';
+
+.copiedLabel {
+  color: $new_primary_lighter_1 !important;
+}
+
+.wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: auto;
+  padding: 16px 16px;
+  box-sizing: border-box;
+  background-color: $gray-50;
+
+  .inputContainer {
+    height: 56px;
+  }
+
+  .input {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: $regular;
+    text-align: right;
+    color: $secondary-text;
+  }
+
+  label {
+    font-family: $inter;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: $secondary-text;
+    display: block;
+  }
+
+  .inputLabel {
+    min-width: 130px;
+  }
+
+  .inputTitle {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: $medium;
+  }
+
+  .menuContainer {
+    margin-top: 8px;
+  }
+
+  .removeText {
+    color: $red_700;
+  }
+
+  .copiedLabel {
+    color: $new_primary_lighter_1;
+  }
+
+  .removeWalletContainer {
+    margin-top: -8px;
+  }
+
+  .titleAddress {
+    font-weight: $regular;
+    color: $secondary-text;
+  }
+
+  & > span {
+    margin-top: 12px;
+    margin-bottom: 24px;
+    font-size: 12px;
+    font-weight: 500;
+    display: block;
+    font-family: $inter;
+  }
+
+  .actions {
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+
+    .buttons {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      flex-direction: row;
+
+      :first-child {
+        margin-right: 6px;
+      }
+
+      :last-child {
+        margin-left: 6px;
+      }
+    }
+
+    .button {
+      width: 100%;
+    }
+
+    .save {
+      background-color: $new-primary;
+    }
+  }
+}

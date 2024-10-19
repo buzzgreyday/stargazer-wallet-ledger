@@ -1,0 +1,136 @@
+@import '~assets/styles/variables';
+
+/*
+* Text Types
+*/
+
+.base {
+  font-family: $inter;
+  overflow: hidden;
+}
+
+.headerDisplay {
+  font-weight: $semibold;
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.headerLarge {
+  font-weight: $semibold;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.headerLargeRegular {
+  font-weight: $regular;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.header {
+  font-weight: $medium;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.body {
+  font-weight: $regular;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.bodyStrong {
+  font-weight: $medium;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.labelSemiStrong {
+  font-weight: $semibold;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.caption {
+  font-weight: $regular;
+  font-size: 12px;
+  line-height: 20px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.captionRegular {
+  font-weight: $regular;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.captionStrong {
+  font-weight: $medium;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/*
+* Text Alignment
+*/
+
+.alignLeft {
+  text-align: left;
+}
+
+.alignCenter {
+  text-align: center;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+/*
+* Text Colors
+*/
+
+.textBlack {
+  color: $black;
+}
+
+.textWhite {
+  color: $white;
+}
+
+.textPrimary {
+  color: $primary;
+}
+
+.textGray100 {
+  color: $gray-100;
+}
+
+.textGrayDark {
+  color: $gray-dark;
+}
+
+.textDarkGray200 {
+  color: $gray-dark-200;
+}
+
+.textPrimaryLighter1 {
+  color: $primary_lighter_1;
+}
+
+.textRed {
+  color: $red;
+}
+
+.textPurpleDark {
+  color: $purple-dark;
+}
+
+.textLinkBlue {
+  color: $link-blue;
+}
+
+.textSecondary {
+  color: $secondary-text;
+}

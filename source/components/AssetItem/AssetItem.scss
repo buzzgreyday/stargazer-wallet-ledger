@@ -1,0 +1,66 @@
+@import '~assets/styles/variables';
+
+$icon-margin-left: 12px;
+
+div.assetItem {
+  width: 352px;
+  height: 64px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    backdrop-filter: blur(10px);
+    background-color: $gray-light;
+    border-radius: 8px;
+  }
+
+  .assetIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    margin-left: $icon-margin-left;
+
+    img {
+      width: 32px;
+      height: 32px;
+      border-radius: 16px;
+    }
+  }
+
+  .assetName {
+    margin-left: 8px;
+    width: 100%;
+  }
+
+  .balanceContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: center;
+    margin-right: 12px;
+
+    .assetBalance {
+      .balanceText {
+        overflow: hidden;
+        text-align: right;
+        letter-spacing: -0.3px;
+      }
+    }
+  }
+
+  .red {
+    color: $red-100;
+    margin-left: 8px;
+  }
+  .green {
+    color: $green-100;
+    margin-left: 8px;
+  }
+}

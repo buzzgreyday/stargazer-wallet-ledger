@@ -1,0 +1,73 @@
+@import '~assets/styles/variables';
+
+.privateKeyContainer {
+  margin-top: 20px;
+}
+
+.dropdownContainer {
+  height: 64px;
+  margin-bottom: 16px;
+  margin-top: 8px;
+}
+
+.keyContainer {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 18px 12px;
+  border: 1px solid $gray_300;
+  border-radius: 8px;
+  background-color: $white;
+  margin-top: 8px;
+  width: 328px;
+}
+
+.extraKeyContainer {
+  min-height: 40px;
+  align-items: center;
+}
+
+.privateKeyText {
+  word-break: break-all;
+}
+
+.showPointer {
+  cursor: pointer;
+}
+
+.copyContainer {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 16px 0px;
+}
+
+.copyContainerBlank {
+  height: 52px;
+}
+
+.copyText {
+  color: $new_primary_lighter_1;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.extraButtonContainer {
+  :first-child {
+    margin-right: 6px;
+  }
+
+  :last-child {
+    margin-left: 6px;
+  }
+}
+
+.button {
+  width: 100%;
+}

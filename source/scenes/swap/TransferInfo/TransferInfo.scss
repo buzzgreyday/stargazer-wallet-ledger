@@ -1,0 +1,70 @@
+@import '~assets/styles/_variables';
+
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  margin: 16px;
+  height: 500px;
+
+  .dataValue {
+    display: flex;
+    width: 350px;
+    height: 48px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    border: 1px solid $gray-300;
+    align-items: center;
+    border-radius: 4px;
+    background-color: $gray-400;
+  }
+
+  .dataValueText {
+    text-overflow: ellipsis;
+    margin-left: 16px;
+    margin-right: 38px;
+  }
+
+  .transactionFeeInput {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    margin-left: 16px;
+
+    .recommendedFeeInput {
+      width: 100%;
+      color: $gray-dark-200;
+      background-color: transparent;
+      border-color: transparent;
+      border-width: 0px;
+      font-family: $inter;
+      padding-left: 0px;
+      font-size: 14px;
+      font-weight: 400;
+      height: 40px;
+      border: 0px solid $gray-200 !important;
+      outline-width: 0px !important;
+    }
+  }
+
+  .transactionFeeTextField {
+    display: flex;
+    flex: 1;
+    font-size: 16px;
+  }
+
+  .transactionFeeRecommend {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 16px;
+  }
+
+  .nextButton {
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+  }
+}

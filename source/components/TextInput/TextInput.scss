@@ -1,0 +1,89 @@
+@import '~assets/styles/variables';
+
+body {
+  .labelContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    .label {
+      font-weight: $semibold;
+    }
+  }
+
+  .textInput {
+    background: $white;
+    line-height: 18px;
+    padding: 12px 12px;
+    box-sizing: border-box;
+    caret-color: $primary_lighter_2;
+    border: 1px solid $gray-300;
+  }
+
+  .focusedInput {
+    border: 1px solid $primary_lighter_2;
+  }
+
+  .iconButton {
+    width: 30px;
+    height: 30px;
+    margin-right: -5px;
+
+    & svg {
+      font-size: 20px;
+    }
+  }
+}
+
+:global body {
+  .MuiOutlinedInput-notchedOutline {
+    border-width: 0px !important;
+    outline: 0px !important;
+  }
+
+  .MuiOutlinedInput-multiline {
+    height: 72px !important;
+    border-radius: 6px !important;
+    padding: 0 !important;
+  }
+
+  .MuiInputBase-inputMultiline {
+    overflow: auto !important;
+    height: 70px !important;
+    padding: 11px !important;
+    margin: 1px 0;
+    box-sizing: border-box;
+    color: $black;
+  }
+
+  .MuiInputBase-root {
+    font-family: $inter;
+    font-size: 16px;
+    line-height: 24px;
+    height: 50px;
+    padding: 12px 12px;
+    font-weight: $medium;
+    outline: 0px !important;
+    border-radius: 6px;
+
+    &.Mui-error {
+      border: 1px solid $red !important;
+    }
+
+    & input {
+      padding: 0px;
+    }
+
+    & input::-webkit-outer-spin-button,
+    & input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    & input[type='number'] {
+      -moz-appearance: textfield;
+    }
+  }
+}

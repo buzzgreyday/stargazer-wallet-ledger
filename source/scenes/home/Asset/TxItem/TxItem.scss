@@ -1,0 +1,132 @@
+@import '~assets/styles/variables';
+
+.txItem {
+  display: flex;
+  background-color: $white;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  cursor: pointer;
+  .groupBar {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    background: $grey-50;
+    color: $black;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-top-color: $grey-100;
+    border-bottom-color: $grey-100;
+
+    .groupBarText {
+      margin-left: 16px;
+      color: #575757;
+      font-weight: $semibold;
+    }
+
+    span {
+      margin-left: 24px;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    margin: 16px;
+    .txIcon {
+      display: flex;
+      align-items: center;
+
+      .iconCircle {
+        display: flex;
+        position: relative;
+        margin-right: 18px;
+        align-items: center;
+
+        .logoContainer {
+          display: flex;
+          position: absolute;
+          height: 32px;
+          width: 38px;
+          justify-content: flex-end;
+          align-items: flex-end;
+
+          .logo {
+            width: 16px;
+            height: 16px;
+            background-color: $white;
+            border-radius: 8px;
+          }
+        }
+      }
+    }
+
+    .txInfo {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+
+      .txAddress {
+        color: #575757;
+      }
+
+      div:last-child span {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: auto;
+        text-align: right;
+        overflow: hidden;
+      }
+    }
+
+    .txAmount {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      text-align: right;
+      align-items: flex-end;
+      justify-content: center;
+
+      .txAmountText {
+        overflow: hidden;
+      }
+
+      .txAmountFiatText {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: #575757;
+        text-align: end;
+      }
+    }
+
+    .txExplorerIcon {
+      width: 60px;
+      display: flex;
+      color: $gray-dark;
+      box-sizing: border-box;
+      transition: all 0.3s;
+
+      .circle {
+        display: flex;
+        width: 24px;
+        height: 24px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: transparent;
+      }
+
+      svg {
+        font-size: 16px;
+      }
+    }
+
+    &:hover > .txExplorerIcon > .circle {
+      background-color: $gray-200;
+      transition: all 0.3s;
+    }
+  }
+}

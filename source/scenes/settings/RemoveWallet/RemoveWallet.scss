@@ -1,0 +1,29 @@
+@import '~assets/styles/variables';
+
+.container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  background-color: $gray-50;
+
+  .buttonsContainer {
+    display: flex;
+    justify-content: center;
+
+    :first-child {
+      margin-right: 6px;
+    }
+
+    :last-child {
+      margin-left: 6px;
+    }
+
+    .button {
+      width: 100%;
+    }
+
+    .removeButton {
+      background-color: $red_700;
+    }
+  }
+}

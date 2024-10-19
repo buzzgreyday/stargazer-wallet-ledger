@@ -1,0 +1,19 @@
+/*
+ * Defines global colors enums.
+ */
+
+export enum COLORS_ENUMS {
+  WHITE = 0,
+  BLACK,
+  RED,
+  DARK_GRAY,
+  GRAY_100,
+  ACCENT_ONE,
+  MONOTONE_ONE,
+  PRIMARY,
+  PRIMARY_LIGHTER_1,
+  DARK_GRAY_200,
+  PURPLE_DARK,
+  LINK_BLUE,
+  SECONDARY_TEXT,
+}
