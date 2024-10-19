@@ -98,6 +98,11 @@ const SignView = ({
             <span>{getFiatAmount(Number(amount || 0) + Number(fee || 0), 8)}</span>
           </div>
         </section>
+        <div className={styles.row}>
+          <small>
+            Unofficial support for Ledger hardware wallet added by Buzz Greyday.
+          </small>
+        </div>
         <section className={styles.instruction}>
           <span>
             Please connect your Ledger device and open the Constellation app to sign the

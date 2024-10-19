@@ -126,9 +126,9 @@ class LedgerBridgeUtil {
     );
   };
 
-  //////////////////////////////
-  // NEW LEDGER SUPPORT (START)
-  //////////////////////////////
+  //////////////////////////////////////
+  // ENABLE LEDGER TX SUPPORT (START)
+  //////////////////////////////////////
 
   // Copied from node_modules\@stardust-collective\dag4-keystore\src\key-store.ts
   async generateTransactionWithHashV2 (amount: number, publicKey: string, from: string, to: string, fee = 0) {
@@ -137,7 +137,7 @@ class LedgerBridgeUtil {
       throw new Error('No public key set');
     }
 
-    // Copied from dag4-ledger (buildTx) to build transaction
+    // buildTx
     const lastRef = await dag4.network.getAddressLastAcceptedTransactionRef(from);
     const { tx, hash } = dag4.keyStore.prepareTx(amount, to, from, lastRef, fee, '2.0');
     console.log('prepared transaction with hash: ', hash);
@@ -147,27 +147,25 @@ class LedgerBridgeUtil {
     console.log(tx);
 
 
-    // BipIndex should be arrived at automatically
+    // bipIndex should be arrived at automatically
     const bipIndex = 0
-    //const uncompressedPublicKey = publicKey.length === 128 ? '04' + publicKey : publicKey;
+
     try {
-      // ledgerBridge.sign seems good here? But how do I verify the publicKey?
+      // signTransaction
       const results = await this.ledgerBridge.sign(ledgerEncodedTx, bipIndex, MESSAGE_TYPE_CODES.SIGN_TRANSACTION);
       console.log('signTransaction\n' + results.signature);
       
       const success = dag4.keyStore.verify(publicKey, hash, results.signature.toString());
       console.log('verify: ', success);
-      // console.log('results: ', results.success.toString().toLowerCase(), results.message.toString().toLowerCase(), results.signature.toString().toLowerCase());
+      // add proof to transaction
       tx.proofs = [{
         signature: results.signature,
         id: publicKey.substring(2),
       }];
 
-      //const success = dag4.keyStore.verify(publicKey.substrin(2), hash, results.signature.toString().toLowerCase());
-
-      //if (!success) {
-      //  throw new Error('Sign-Verify failed');
-      //}
+      if (!success) {
+        throw new Error('Sign-Verify failed');
+      }
 
       const signatureAddress = dag4.keyStore.getDagAddressFromPublicKey(publicKey.substring(2));
 
@@ -179,7 +177,6 @@ class LedgerBridgeUtil {
       signatureElt.id = publicKey.substring(2); //Remove 04 prefix
       signatureElt.signature = results.signature;
 
-      //
       const transaction = TransactionV2.fromPostTransaction(tx as PostTransactionV2);
       transaction.addSignature(signatureElt);
 
@@ -188,13 +185,13 @@ class LedgerBridgeUtil {
         signedTx: transaction.getPostTransaction()
       };
     } catch (error) {
-      console.log('Error signing transaction:', error);
+      console.log('Ledger transaction error:', error);
     }
   }
 
-  ///////////////////////////////
-  // NEW LEDGER SUPPORT (STOP)
-  ///////////////////////////////
+  /////////////////////////////////
+  // ADD LEDGER TX SUPPORT (END)
+  /////////////////////////////////
 
   public signMessage = (message: string, bipIndex: number) => {
     return this.ledgerBridge.signMessage(message, bipIndex);
