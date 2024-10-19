@@ -160,7 +160,7 @@ class LedgerBridgeUtil {
       // add proof to transaction
       tx.proofs = [{
         signature: results.signature,
-        id: publicKey.substring(2),
+        id: publicKey.substring(2), // uncompressed publicKey (remove 04 prefix)
       }];
 
       if (!success) {
@@ -174,7 +174,7 @@ class LedgerBridgeUtil {
       }
 
       const signatureElt: any = {};
-      signatureElt.id = publicKey.substring(2); //Remove 04 prefix
+      signatureElt.id = publicKey.substring(2);
       signatureElt.signature = results.signature;
 
       const transaction = TransactionV2.fromPostTransaction(tx as PostTransactionV2);
