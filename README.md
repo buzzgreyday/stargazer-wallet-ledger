@@ -1,80 +1,78 @@
-# Stargazer Extension (Ledger)
+# Stargazer Ledger Wallet Extension
 
-This is an unofficial release of Stargazer Wallet with Tessellation v2 support for the unofficial Constellation Ledger app.
+This is an **unofficial release** of Stargazer Wallet with Tessellation v2 support for the unofficial Constellation Ledger app. Due to the unofficial state of this release you will not see USD values displayed.
 
-## Getting Started
+## Walkthrough
 
-## Option 1: Install
+To make thie process as accessible as possible this walkthrough doesn't cover building/compiling the Stargazer extension from source. You can choose to build/compile the extension yourself using these [instructions](BUILD.md). I'm currently looking for ways to make the process less nerdy.
+### 1.1. Install Chrome Extension
 
-### Install Chrome Extension
-
-- Download the latest release [here](https://github.com/buzzgreyday/stargazer-wallet-ledger/releases/latest)
+* [Download](https://github.com/buzzgreyday/stargazer-wallet-ledger/releases/latest) the Stargazer extension with support for Ledger
 - Extract the `zip` somewhere nice
-- Open Chrome, click `extensions` and `enable developer mode`
-- Locate the nice place and open the unzipped directory, then import
 
-### Build and Load the Constellatio Ledger App
+* Load the Stargazer Ledger Wallet extension
+  - Go to the Extensions page by entering `chrome://extensions` in a new tab. (By design `chrome:// URLs` are not linkable.)
+    - Alternatively, click the Extensions menu `puzzle button` and select `Manage Extensions` at the bottom of the menu.
+    - Or, click the Chrome menu, hover over More Tools, then select Extensions.
+  - Enable Developer Mode by clicking the toggle switch next to Developer mode.
+  - Click the Load unpacked button and select the extension directory (extracted above).
+  - Ta-da! The extension has been successfully installed.
 
-Since the app (v1.0.7) isn't officially supported, we'll have to build it:
+### 1.2. Constellation Ledger App
 
-## Option 2: Build
+Since the app (v1.0.7) isn't available through Ledger Live we'll have to build it.
 
-Ensure you have
+**1.2.1. Preliminaries**
 
-- [Node.js](https://nodejs.org) 10 or later installed
-- [Yarn](https://yarnpkg.com) v1 or v2 installed
+- [Install Docker](https://docs.docker.com/engine/install/).
+- Download [constellation-ledger-native-app-master.zip](https://github.com/buzzgreyday/constellation-ledger-native-app/releases/latest).
+  - Alernatively, clone `https://github.com/StardustCollective/constellation-ledger-native-app.git` using `git`.
+- Extract it somewhere nice (ex: C:/Users/john/constellation-ledger-native-app-master).
 
-Then run the following:
+**1.2.2. Build/compile ([source](https://github.com/LedgerHQ/ledger-app-builder/?tab=readme-ov-file#compile-your-app-in-the-container))**
+  - NB: Replace the path of the app’s local path (ex: replace `"C:/Users/john/constellation-ledger-native-app:/app"` with `"C:/Users/jane/constellation-ledger-native-app:/app"`).
 
-- `yarn install` to install dependencies.
-- `yarn run dev:chrome` to start the development server for chrome extension
-- `yarn run dev:firefox` to start the development server for firefox addon
-- `yarn run dev:opera` to start the development server for opera extension
-- `yarn run build:chrome` to build chrome extension
-- `yarn run build:firefox` to build firefox addon
-- `yarn run build:opera` to build opera extension
-- `yarn run build` builds and packs extensions all at once to extension/ directory
+    1.2.2a. Windows:
+    ```
+    docker run --rm -ti  -v "C:/Users/john/constellation-ledger-native-app:/app" --privileged -v "/dev/bus/usb:/dev/bus/usb" --user $(id -u $USER):$(id -g $USER) ghcr.io/ledgerhq/ledger-app-builder/ledger-app-builder:latest
+    ```
+    1.2.2b. Linux/MacOS:
+    ```
+    sudo docker run --rm -ti  -v "/Users/john/constellation-ledger-native-app:/app" --privileged -v "/dev/bus/usb:/dev/bus/usb" --user $(id -u $USER):$(id -g $USER) ghcr.io/ledgerhq/ledger-app-builder/ledger-app-builder:latest
+    ```
+**1.2.3. Build/compile for Nano S**
+    ```
+    BOLOS_SDK=$NANOS_SDK make
+    ```
+**1.2.4. Load app onto Ledger device**
+    - NB: Make sure the Ledger is connected to your computer.
+    ```
+    BOLOS_SDK=$NANOS_SDK make load
+    ```
 
-### Development
+### 1.3. Connect Stargazer Ledger Wallet and Constellation Ledger App
 
-- `yarn install` to install dependencies.
-- To watch file changes in development
+**1.3.1. Prepare Stargazer Ledger Wallet**
 
-  - Chrome
-    - `yarn run dev:chrome`
-  - Firefox
-    - `yarn run dev:firefox`
-  - Opera
-    - `yarn run dev:opera`
+- Open Stargazer Ledger Wallet.
+- Click `Setiings` and import a new `Constellation` wallet.
+- Select `Harware wallet` from the selection menu.
+- Click the `Ledger button`.
+- You should now see a page with a `Connect to Ledger` button 
 
-- **Load extension in browser**
+**1.3.2. Prepare the Constellation Ledger App**
 
-- ### Chrome
+- Open the `Constellation` app on your Ledger device.
+- You will see the following message `This app is not genuine`. This is due to lack of official support by Ledger.
+- Click the left button on your device two time and select `Open application`.
+- You will see the following message `Pending Ledger review`
+- Click the two buttons to accept and the Ledger app should now be displaying `Constellation`. This means the app is now open for business.
 
-  - Go to the browser address bar and type `chrome://extensions`
-  - Check the `Developer Mode` button to enable it.
-  - Click on the `Load Unpacked Extension…` button.
-  - Select your extension’s extracted directory.
+**1.3.3. Pair Device with the Stargazer Ledger Wallet**
 
-- ### Firefox
+- Click the `Connect to Ledger` button.
+- IMPORTANT: Select the first wallet address and click `Next` (more wallets will be supported in the future).
+- Let the pairing finish.
+- Now open the Stargazer Ledger Wallet extension again and you should see the wallet `Ledger 1` is now available.
 
-  - Load the Add-on via `about:debugging` as temporary Add-on.
-  - Choose the `manifest.json` file in the extracted directory
-
-- ### Opera
-
-  - Load the extension via `opera:extensions`
-  - Check the `Developer Mode` and load as unpacked from extension’s extracted directory.
-
-### Production
-
-- `yarn run build` builds the extension for all the browsers to `extension/BROWSER` directory respectively.
-
-Note: By default the `manifest.json` is set with version `0.0.0`. The webpack loader will update the version in the build with that of the `package.json` version. In order to release a new version, update version in `package.json` and run script.
-
-### Running E2E Test
-
-The chrome e2e test can be ran with `yarn test:e2e:chrome`. But are only compatible if you have 
-Chrome v79 installed. Update the chrome driver page to match your chrome install to run the e2e test
-on a newer version of Chrome.
-
+**All done.**

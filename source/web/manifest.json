@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Stargazer Wallet",
+  "name": "Stargazer Ledger Wallet",
   "version": "5.0.2",
   "icons": {
     "16": "assets/icons/favicon-16.png",
