@@ -41,24 +41,24 @@ Since the app (v1.0.7) isn't available through Ledger Live we'll have to build i
     sudo docker run --rm -ti  -v "/Users/john/constellation-ledger-native-app:/app" --privileged -v "/dev/bus/usb:/dev/bus/usb" --user $(id -u $USER):$(id -g $USER) ghcr.io/ledgerhq/ledger-app-builder/ledger-app-builder:latest
     ```
 **1.2.3. Build/compile for Nano S**
-    ```
-    mkdir builds
-    make clean
-    make
-    mv bin/app.elf builds/app_s.elf
-    ```
+```
+mkdir builds
+make clean
+make
+mv bin/app.elf builds/app_s.elf
+```
 **1.2.4. Load app onto Ledger device**
-    - NB: Make sure the Ledger is connected to your computer.
-    ```
-    make load
-    ```
+- NB: Make sure the Ledger is connected to your computer.
+```
+make load
+```
 
 ### 1.3. Connect Stargazer Ledger Wallet and Constellation Ledger App
 
 **1.3.1. Prepare Stargazer Ledger Wallet**
 
 - Open Stargazer Ledger Wallet.
-- Click `Setiings` and import a new `Constellation` wallet.
+- Click `Settings` and import a new `Constellation` wallet.
 - Select `Harware wallet` from the selection menu.
 - Click the `Ledger button`.
 - You should now see a page with a `Connect to Ledger` button 
