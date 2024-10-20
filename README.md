@@ -42,12 +42,15 @@ Since the app (v1.0.7) isn't available through Ledger Live we'll have to build i
     ```
 **1.2.3. Build/compile for Nano S**
     ```
-    BOLOS_SDK=$NANOS_SDK make
+    mkdir builds
+    make clean
+    make
+    mv bin/app.elf builds/app_s.elf
     ```
 **1.2.4. Load app onto Ledger device**
     - NB: Make sure the Ledger is connected to your computer.
     ```
-    BOLOS_SDK=$NANOS_SDK make load
+    make load
     ```
 
 ### 1.3. Connect Stargazer Ledger Wallet and Constellation Ledger App
