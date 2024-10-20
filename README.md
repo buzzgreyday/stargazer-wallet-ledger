@@ -1,6 +1,6 @@
 # Stargazer Ledger Wallet Extension
 
-This is an **unofficial release** of Stargazer Wallet with Tessellation v2 support for the unofficial Constellation Ledger app. Due to the unofficial state of this release you will not see USD values displayed.
+This is an **unofficial release** of Stargazer Wallet with Tessellation v2 support for the unofficial Constellation Ledger app. Due to the unofficial state of this release you will not see USD values displayed and some features aren't supported.
 
 ## Walkthrough
 
