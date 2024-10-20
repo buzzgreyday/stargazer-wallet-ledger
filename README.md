@@ -8,9 +8,9 @@ To make thie process as accessible as possible this walkthrough doesn't cover bu
 ### 1.1. Install Chrome Extension
 
 * [Download](https://github.com/buzzgreyday/stargazer-wallet-ledger/releases/latest) the Stargazer extension with support for Ledger
-- Extract the `zip` somewhere nice
+- Extract the `zip` somewhere nice.
 
-* Load the Stargazer Ledger Wallet extension
+* Load the Stargazer Ledger Wallet extension.
   - Go to the Extensions page by entering `chrome://extensions` in a new tab. (By design `chrome:// URLs` are not linkable.)
     - Alternatively, click the Extensions menu `puzzle button` and select `Manage Extensions` at the bottom of the menu.
     - Or, click the Chrome menu, hover over More Tools, then select Extensions.
