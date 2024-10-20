@@ -26,7 +26,7 @@ const About: FC<IAboutSettings> = ({
 }) => {
   return (
     <div className={styles.about}>
-      <span>Stargazer Wallet Chrome Extension v{versionMajorMinor}</span>
+      <span>Stargazer Ledger Wallet Chrome Extension v{versionMajorMinor} (unofficial)</span>
       <span>Version: {version}</span>
       <span>
         Support:{' '}
