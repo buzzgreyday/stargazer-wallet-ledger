@@ -141,27 +141,22 @@ class LedgerBridgeUtil {
     const lastRef = await dag4.network.getAddressLastAcceptedTransactionRef(from);
     const { tx, hash } = dag4.keyStore.prepareTx(amount, to, from, lastRef, fee, '2.0');
     console.log('prepared transaction with hash: ', hash);
-    console.log(tx);
     const ledgerEncodedTx = txTranscodeUtil.encodeTx(tx, false, false);
-    // console.log('ledger encoded tx: ', ledgerEncodedTx);
-    console.log(tx);
-
-
     // bipIndex should be arrived at automatically
     const bipIndex = 0
+    // signTransaction
+    const results = await this.ledgerBridge.sign(ledgerEncodedTx, bipIndex, MESSAGE_TYPE_CODES.SIGN_TRANSACTION);
+    // add proof to transaction
+    tx.proofs = [{
+      signature: results.signature,
+      id: publicKey.substring(2), // uncompressed publicKey (remove 04 prefix)
+    }];
 
     try {
-      // signTransaction
-      const results = await this.ledgerBridge.sign(ledgerEncodedTx, bipIndex, MESSAGE_TYPE_CODES.SIGN_TRANSACTION);
-      console.log('signTransaction\n' + results.signature);
       
       const success = dag4.keyStore.verify(publicKey, hash, results.signature.toString());
       console.log('verify: ', success);
-      // add proof to transaction
-      tx.proofs = [{
-        signature: results.signature,
-        id: publicKey.substring(2), // uncompressed publicKey (remove 04 prefix)
-      }];
+
 
       if (!success) {
         throw new Error('Sign-Verify failed');

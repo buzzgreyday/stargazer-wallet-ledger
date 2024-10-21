@@ -104,7 +104,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     width: 380,
-    height: 570,
+    height: 620,
     backgroundColor: '#ffffff',
     borderRadius: 6,
   },
@@ -323,8 +323,6 @@ const LedgerPage = () => {
       
       try {
         const hashSent = await dag4.account.networkInstance.postTransaction(signedTx);
-        //console.log(JSON.stringify(signedTX));
-        //const hashSent = await dag4.network.postTransaction(signedTX);
         console.log('tx hash sent: ', hashSent);
       } catch (error) {
           console.error('error during transaction posting', error);
@@ -332,11 +330,11 @@ const LedgerPage = () => {
 
       setWaitingForLedger(false);
       setTransactionSigned(true);
-      //LedgerBridgeUtil.closeConnection();
+      LedgerBridgeUtil.closeConnection();
     } catch (error: any) {
       console.log(error.message || error.toString());
-      //setWaitingForLedger(false);
-      //LedgerBridgeUtil.closeConnection();
+      setWaitingForLedger(false);
+      LedgerBridgeUtil.closeConnection();
     }
   };
 

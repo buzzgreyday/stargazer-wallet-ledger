@@ -100,7 +100,7 @@ const SignView = ({
         </section>
         <div className={styles.row}>
           <small>
-            Unofficial support for Ledger hardware wallet added by Buzz Greyday.
+            Unofficial Tessellation V2 support for Ledger added by Buzz Greyday.
           </small>
         </div>
         <section className={styles.instruction}>
