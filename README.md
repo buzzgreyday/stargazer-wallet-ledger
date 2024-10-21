@@ -7,7 +7,7 @@ This is an **unofficial release** of Stargazer Wallet with Tessellation v2 suppo
 To make thie process as accessible as possible this walkthrough doesn't cover building/compiling the Stargazer extension from source. You can choose to build/compile the extension yourself using these [instructions](BUILD.md). I'm currently looking for ways to make the process less nerdy.
 ### 1.1. Install Chrome Extension
 
-* [Download](https://github.com/buzzgreyday/stargazer-wallet-ledger/releases/latest) the Stargazer extension with support for Ledger
+* [Download](https://github.com/buzzgreyday/stargazer-wallet-ledger/releases/latest) the Stargazer Wallet extension with added support for Ledger on Tessellation v2.
 - Extract the `zip` somewhere nice.
 
 * Load the Stargazer Ledger Wallet extension.
