@@ -301,7 +301,8 @@ const LedgerPage = () => {
     //const { amount, publicKey, from, to, bipIndex } = data;
 
     // Took inspiration from 'source/web/pages/Bitfi/Bitfi.tsx'
-    const { amount, publicKey, from, to, fee } = queryString.parse(location.search) as any;
+    const { amount, publicKey, from, to, fee, bipIndex } = queryString.parse(location.search) as any;
+    console.log(location.search, location.href, bipIndex)
 
     try {
       setWaitingForLedger(true);
@@ -315,8 +316,7 @@ const LedgerPage = () => {
       //  to
       //);
       const { hash, signedTx } = await LedgerBridgeUtil.generateTransactionWithHashV2(Number(amount), publicKey.toLowerCase(), from, to, Number(fee));
-      console.log('signed transaction: ', signedTx);
-      console.log('with hash: ', hash);
+      console.log('signed transaction: ', signedTx, hash);
       //if (hash) {
       //  StargazerWSMessageBroker.sendResponseResult(hash, message);
       //}
@@ -407,7 +407,7 @@ const LedgerPage = () => {
         </>
       );
     } else if (walletState === WALLET_STATE_ENUM.SIGN) {
-      const { amount, fee, from, to } = queryString.parse(location.search) as any;
+      const { amount, fee, from, to, bipIndex } = queryString.parse(location.search) as any;
       return (
         <>
           <SignView
@@ -415,6 +415,7 @@ const LedgerPage = () => {
             fee={fee}
             fromAddress={from}
             toAddress={to}
+            bipIndex={bipIndex}
             waiting={waitingForLedger}
             onSignPress={onSignPress}
             transactionSigned={transactionSigned}

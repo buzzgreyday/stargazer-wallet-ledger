@@ -61,7 +61,10 @@ class LedgerBridgeUtil {
    * NUMBER_OF_ACCOUNTS
    * The number of accounts that should be fetched per page request.
    */
-  private readonly NUMBER_OF_ACCOUNTS = 5;
+
+  // Pagination has been disabled source/web/pages/Ledger/views/accounts until support is added for multiple wallets
+  //private readonly NUMBER_OF_ACCOUNTS = 5;
+  private readonly NUMBER_OF_ACCOUNTS = 1;
 
   /////////////////////////////
   // Constructor

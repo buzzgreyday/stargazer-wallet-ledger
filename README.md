@@ -1,6 +1,6 @@
 # Stargazer Ledger Wallet Extension
 
-This is an **unofficial release** of Stargazer Wallet with Tessellation v2 support for the unofficial Constellation Ledger app. Due to the unofficial state of this release you will not see USD values displayed and some features aren't supported.
+This is an **unofficial release** of Stargazer Wallet with Tessellation v2 support for the unofficial Constellation Ledger app for Nano S/S+. Due to the unofficial state of this release you will not see USD values displayed and some features aren't supported.
 
 ## Walkthrough
 
@@ -18,7 +18,7 @@ To make thie process as accessible as possible this walkthrough doesn't cover bu
   - Click the Load unpacked button and select the extension directory (extracted above).
   - Ta-da! The extension has been successfully installed.
 
-### 1.2. Constellation Ledger App
+### 1.2. Constellation Ledger App (Nano S/S+ compatible)
 
 Since the app (v1.0.7) isn't available through Ledger Live we'll have to build it.
 
