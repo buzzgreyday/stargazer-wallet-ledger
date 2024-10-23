@@ -1,0 +1,675 @@
+diff --git a/source/native/ios/Stargazer.xcodeproj/xcshareddata/xcschemes/Stargazer.xcscheme b/source/native/ios/Stargazer.xcodeproj/xcshareddata/xcschemes/Stargazer.xcscheme
+deleted file mode 100644
+index aa4e6b47..00000000
+--- a/source/native/ios/Stargazer.xcodeproj/xcshareddata/xcschemes/Stargazer.xcscheme
++++ /dev/null
+@@ -1,88 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<Scheme
+-   LastUpgradeVersion = "1210"
+-   version = "1.3">
+-   <BuildAction
+-      parallelizeBuildables = "YES"
+-      buildImplicitDependencies = "YES">
+-      <BuildActionEntries>
+-         <BuildActionEntry
+-            buildForTesting = "YES"
+-            buildForRunning = "YES"
+-            buildForProfiling = "YES"
+-            buildForArchiving = "YES"
+-            buildForAnalyzing = "YES">
+-            <BuildableReference
+-               BuildableIdentifier = "primary"
+-               BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+-               BuildableName = "Stargazer.app"
+-               BlueprintName = "Stargazer"
+-               ReferencedContainer = "container:Stargazer.xcodeproj">
+-            </BuildableReference>
+-         </BuildActionEntry>
+-      </BuildActionEntries>
+-   </BuildAction>
+-   <TestAction
+-      buildConfiguration = "Debug"
+-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+-      shouldUseLaunchSchemeArgsEnv = "YES">
+-      <Testables>
+-         <TestableReference
+-            skipped = "NO">
+-            <BuildableReference
+-               BuildableIdentifier = "primary"
+-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
+-               BuildableName = "StargazerTests.xctest"
+-               BlueprintName = "StargazerTests"
+-               ReferencedContainer = "container:Stargazer.xcodeproj">
+-            </BuildableReference>
+-         </TestableReference>
+-      </Testables>
+-   </TestAction>
+-   <LaunchAction
+-      buildConfiguration = "Debug"
+-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+-      launchStyle = "0"
+-      useCustomWorkingDirectory = "NO"
+-      ignoresPersistentStateOnLaunch = "NO"
+-      debugDocumentVersioning = "YES"
+-      debugServiceExtension = "internal"
+-      allowLocationSimulation = "YES">
+-      <BuildableProductRunnable
+-         runnableDebuggingMode = "0">
+-         <BuildableReference
+-            BuildableIdentifier = "primary"
+-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+-            BuildableName = "Stargazer.app"
+-            BlueprintName = "Stargazer"
+-            ReferencedContainer = "container:Stargazer.xcodeproj">
+-         </BuildableReference>
+-      </BuildableProductRunnable>
+-   </LaunchAction>
+-   <ProfileAction
+-      buildConfiguration = "Release"
+-      shouldUseLaunchSchemeArgsEnv = "YES"
+-      savedToolIdentifier = ""
+-      useCustomWorkingDirectory = "NO"
+-      debugDocumentVersioning = "YES">
+-      <BuildableProductRunnable
+-         runnableDebuggingMode = "0">
+-         <BuildableReference
+-            BuildableIdentifier = "primary"
+-            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+-            BuildableName = "Stargazer.app"
+-            BlueprintName = "Stargazer"
+-            ReferencedContainer = "container:Stargazer.xcodeproj">
+-         </BuildableReference>
+-      </BuildableProductRunnable>
+-   </ProfileAction>
+-   <AnalyzeAction
+-      buildConfiguration = "Debug">
+-   </AnalyzeAction>
+-   <ArchiveAction
+-      buildConfiguration = "Release"
+-      revealArchiveInOrganizer = "YES">
+-   </ArchiveAction>
+-</Scheme>
+diff --git a/source/scenes/common/Login/Login.tsx b/source/scenes/common/Login/Login.tsx
+index bba816f6..b33c800d 100644
+--- a/source/scenes/common/Login/Login.tsx
++++ b/source/scenes/common/Login/Login.tsx
+@@ -70,7 +70,7 @@ const Login: FC<ILogin> = ({
+         align={TEXT_ALIGN_ENUM.CENTER}
+         extraStyles={styles.title}
+       >
+-        Welcome to <TextV3.HeaderLarge>Stargazer Wallet</TextV3.HeaderLarge>
++        Unofficial Ledger <TextV3.HeaderLarge>Stargazer Wallet</TextV3.HeaderLarge>
+       </TextV3.HeaderLargeRegular>
+       <img src={'/' + LogoImage} className={styles.logo} alt="Stargazer" />
+       <form onSubmit={handleSubmit((data: any) => onSubmit(data, false, storeSgw))}>
+diff --git a/source/scenes/settings/About/About.container.tsx b/source/scenes/settings/About/About.container.tsx
+index 7c66231b..f722929b 100644
+--- a/source/scenes/settings/About/About.container.tsx
++++ b/source/scenes/settings/About/About.container.tsx
+@@ -6,8 +6,8 @@ import About from './About';
+ 
+ import useVersion from 'hooks/useVersion';
+ 
+-const SUPPORT_LINK = 'https://t.me/StardustSupport';
+-const SUPPORT_LABEL = 'https://t.me/StardustSupport';
++const SUPPORT_LINK = 'https://x.com/buzzgreyday';
++const SUPPORT_LABEL = 'https://x.com/buzzgreyday';
+ const TERMS_LINK = 'https://www.constellationnetwork.io/stargazer-terms';
+ const TERMS_LABEL = 'https://www.constellationnetwork.io/stargazer-terms';
+ const PRIVACY_LINK = 'https://www.constellationnetwork.io/stargazer-privacy-policy ';
+diff --git a/source/scenes/settings/About/About.native.tsx b/source/scenes/settings/About/About.native.tsx
+index 84fb63df..69db1835 100644
+--- a/source/scenes/settings/About/About.native.tsx
++++ b/source/scenes/settings/About/About.native.tsx
+@@ -25,7 +25,7 @@ const About: FC<IAboutSettings> = ({
+   ]);
+   return (
+     <View style={styles.about}>
+-      <Text style={styles.text}>Stargazer Wallet v{versionMajorMinor}</Text>
++      <Text style={styles.text}>Stargazer Ledger Wallet v{versionMajorMinor}</Text>
+       <Text style={styles.text}>Version: {version}</Text>
+       <Text style={styles.text}>
+         Support:{' '}
+diff --git a/source/scenes/settings/About/About.tsx b/source/scenes/settings/About/About.tsx
+index 6d9e7ecf..18e9414c 100644
+--- a/source/scenes/settings/About/About.tsx
++++ b/source/scenes/settings/About/About.tsx
+@@ -26,7 +26,7 @@ const About: FC<IAboutSettings> = ({
+ }) => {
+   return (
+     <div className={styles.about}>
+-      <span>Stargazer Wallet Chrome Extension v{versionMajorMinor}</span>
++      <span>Stargazer Ledger Wallet Chrome Extension v{versionMajorMinor} (unofficial)</span>
+       <span>Version: {version}</span>
+       <span>
+         Support:{' '}
+diff --git a/source/scenes/settings/ImportAccount/ImportAccount.tsx b/source/scenes/settings/ImportAccount/ImportAccount.tsx
+index 207ac968..cf485062 100644
+--- a/source/scenes/settings/ImportAccount/ImportAccount.tsx
++++ b/source/scenes/settings/ImportAccount/ImportAccount.tsx
+@@ -13,7 +13,7 @@ import { IOption } from 'components/Select/types';
+ import TextInput from 'components/TextInput';
+ import FileSelect from 'components/FileSelect';
+ 
+-// import LedgerIcon from 'assets/images/svg/ledger.svg';
++import LedgerIcon from 'assets/images/svg/ledger.svg';
+ import BitfiIcon from 'assets/images/svg/bitfi.svg';
+ import styles from './ImportAccount.scss';
+ import { useAlert } from 'react-alert';
+@@ -201,10 +201,10 @@ const ImportAccount: FC<IImportAccountSettings> = ({
+                 {hardwareStep === 1 && (
+                   <>
+                     <div className={styles.hardwareList}>
+-                      {/* <div onClick={() => onHardwareTypeClick(HARDWARE_WALLET.ledger)} className={clsx([styles.walletModel, hardwareWallet === HARDWARE_WALLET.ledger ? styles. walletModelSelected : null])}>
++                      <div onClick={() => onHardwareTypeClick(HARDWARE_WALLET.ledger)} className={clsx([styles.walletModel, hardwareWallet === HARDWARE_WALLET.ledger ? styles. walletModelSelected : null])}>
+                         <img src={`/${LedgerIcon}`} alt="ledger_icon" />
+                       </div>
+-                      &nbsp; */}
++                      &nbsp;
+                       <div
+                         onClick={() => onHardwareTypeClick(HARDWARE_WALLET.bitfi)}
+                         className={clsx([
+diff --git a/source/scenes/unauth/Start/Start.tsx b/source/scenes/unauth/Start/Start.tsx
+index 4066ede3..c9a9a382 100644
+--- a/source/scenes/unauth/Start/Start.tsx
++++ b/source/scenes/unauth/Start/Start.tsx
+@@ -24,7 +24,7 @@ const Start: FC<IStart> = ({ navigation, onImportClicked, onGetStartedClicked })
+         align={TEXT_ALIGN_ENUM.CENTER}
+         extraStyles={styles.title}
+       >
+-        Welcome to <TextV3.HeaderLarge>Stargazer Wallet</TextV3.HeaderLarge>
++        Unofficial <TextV3.HeaderLarge>Stargazer Wallet</TextV3.HeaderLarge>
+       </TextV3.HeaderLargeRegular>
+       <img src={`/${LogoImage}`} className={styles.logo} alt="Stargazer" />
+       <ButtonV3
+diff --git a/source/types/dag4-ledger.d.ts b/source/types/dag4-ledger.d.ts
+new file mode 100644
+index 00000000..c85b2983
+--- /dev/null
++++ b/source/types/dag4-ledger.d.ts
+@@ -0,0 +1,37 @@
++declare module '@stardust-collective/dag4-ledger/src/lib/tx-transcode' {
++    export function encodeTx(
++      tx: string,
++      embedSpaces: boolean,
++      hashReference: boolean
++    ): string;
++  
++    // You can declare other methods and exports here as needed
++  }
++
++declare module '@stardust-collective/dag4-ledger' {
++    export type LedgerAccount = {
++      publicKey: string;
++      address: string;
++      balance: string;
++    };
++  
++    export class LedgerBridge {
++      constructor(transport: any);
++  
++      getPublicKeys(startIndex: number, numberOfAccounts: number, onProgressUpdate: (update: number) => void): Promise<string[]>;
++  
++      getAccountInfoForPublicKeys(publicKeys: string[]): Promise<LedgerAccount[]>;
++  
++      signTransaction(publicKey: string, bipIndex: number, hash: string, ledgerEncodedTx: string): Promise<{ signature: string }>;
++      
++      sign(ledgerEncodedTx: string, bip44Index: number, messageTypeCode: string): Promise<{
++        success: boolean;
++        message: string;
++        signature: string;
++        }>;
++
++      signMessage(message: any, bipIndex: number): Promise<string[]>;
++
++      buildTx(amount: number, publicKey: string, bipIndex: number, fromAddress: string, toAddress: string): any;
++    }
++  }
+\ No newline at end of file
+diff --git a/source/web/.env b/source/web/.env
+new file mode 100644
+index 00000000..2a99743e
+--- /dev/null
++++ b/source/web/.env
+@@ -0,0 +1,5 @@
++ETHERSCAN_API_KEY=apiKey
++TEST_PRIVATE_KEY=testKey
++POLYGONSCAN_API_KEY=apiKey
++BSCSCAN_API_KEY=apiKey
++SNOWTRACE_API_KEY=apiKey
+\ No newline at end of file
+diff --git a/source/web/manifest.json b/source/web/manifest.json
+index 03275df6..79b2b8df 100644
+--- a/source/web/manifest.json
++++ b/source/web/manifest.json
+@@ -1,7 +1,7 @@
+ {
+   "manifest_version": 3,
+-  "name": "Stargazer Wallet",
+-  "version": "5.0.2",
++  "name": "Stargazer Ledger Wallet",
++  "version": "5.0.2-r1",
+   "icons": {
+     "16": "assets/icons/favicon-16.png",
+     "32": "assets/icons/favicon-32.png",
+@@ -32,7 +32,7 @@
+       "48": "/assets/icons/favicon-48.png",
+       "128": "/assets/icons/favicon-128.png"
+     },
+-    "default_title": "Stargazer",
++    "default_title": "Stargazer Ledger",
+     "__firefox__browser_style": false
+   },
+   "__chrome__options_page": "options.html",
+diff --git a/source/web/pages/Ledger/Ledger.tsx b/source/web/pages/Ledger/Ledger.tsx
+index 7c867f9d..3663796e 100644
+--- a/source/web/pages/Ledger/Ledger.tsx
++++ b/source/web/pages/Ledger/Ledger.tsx
+@@ -38,7 +38,7 @@ import { dag4 } from '@stardust-collective/dag4';
+ import { decodeFromBase64 } from 'utils/encoding';
+ import { getWalletController } from 'utils/controllersUtils';
+ import {
+-  StargazerExternalPopups,
++//  StargazerExternalPopups,
+   StargazerWSMessageBroker,
+ } from 'scripts/Background/messaging';
+ 
+@@ -104,7 +104,7 @@ const useStyles = makeStyles({
+     display: 'flex',
+     flexDirection: 'column',
+     width: 380,
+-    height: 570,
++    height: 620,
+     backgroundColor: '#ffffff',
+     borderRadius: 6,
+   },
+@@ -284,54 +284,73 @@ const LedgerPage = () => {
+   };
+ 
+   const onSignPress = async () => {
+-    const { data, message: requestMessage } =
+-      StargazerExternalPopups.decodeRequestMessageLocationParams<{
+-        amount: string;
+-        publicKey: string;
+-        from: string;
+-        to: string;
+-        bipIndex: string;
+-      }>(location.href);
+ 
+-    const { amount, publicKey, from, to, bipIndex } = data;
++    ////////////////////////////////
++    // NEW LEDGER SUPPORT (START)
++    ////////////////////////////////
++
++    //const { data, message: requestMessage } =
++    //  StargazerExternalPopups.decodeRequestMessageLocationParams<{
++    //    amount: string;
++    //    publicKey: string;
++    //    from: string;
++    //    to: string;
++    //    bipIndex: string;
++    //  }>(location.href);
++
++    //const { amount, publicKey, from, to, bipIndex } = data;
++
++    // Took inspiration from 'source/web/pages/Bitfi/Bitfi.tsx'
++    const { amount, publicKey, from, to, fee, bipIndex } = queryString.parse(location.search) as any;
++    console.log(location.search, location.href, bipIndex)
+ 
+     try {
+       setWaitingForLedger(true);
+       await LedgerBridgeUtil.requestPermissions();
+       // TODO-421: Update buildTransaction to support PostTransaction and PostTransactionV2
+-      const signedTX = await LedgerBridgeUtil.buildTransaction(
+-        Number(amount),
+-        publicKey,
+-        Number(bipIndex),
+-        from,
+-        to
+-      );
+-      const hash = await dag4.network.postTransaction(signedTX);
+-      if (hash) {
+-        StargazerWSMessageBroker.sendResponseResult(hash, requestMessage);
++      //const signedTX = await LedgerBridgeUtil.buildTransaction(
++      //  Number(amount),
++      //  publicKey,
++      //  Number(bipIndex),
++      //  from,
++      //  to
++      //);
++      const { hash, signedTx } = await LedgerBridgeUtil.generateTransactionWithHashV2(Number(amount), publicKey.toLowerCase(), from, to, Number(fee));
++      console.log('signed transaction: ', signedTx, hash);
++      //if (hash) {
++      //  StargazerWSMessageBroker.sendResponseResult(hash, message);
++      //}
++      
++      try {
++        const hashSent = await dag4.account.networkInstance.postTransaction(signedTx);
++        console.log('tx hash sent: ', hashSent);
++      } catch (error) {
++          console.error('error during transaction posting', error);
+       }
++
+       setWaitingForLedger(false);
+       setTransactionSigned(true);
+       LedgerBridgeUtil.closeConnection();
+-    } catch (e) {
+-      console.log('error', JSON.stringify(e, null, 2));
++    } catch (error: any) {
++      console.log(error.message || error.toString());
+       setWaitingForLedger(false);
+       LedgerBridgeUtil.closeConnection();
+     }
+   };
+ 
+   const onSignMessagePress = async () => {
+-    const { data, message: requestMessage } =
+-      StargazerExternalPopups.decodeRequestMessageLocationParams<{
+-        signatureRequestEncoded: string;
+-        asset: string;
+-        provider: string;
+-        chainLabel: string;
+-        walletLabel: string;
+-        bipIndex: string;
+-      }>(location.href);
++    const { data, message: requestMessage } = queryString.parse(location.search) as any;
++      //StargazerExternalPopups.decodeRequestMessageLocationParams<{
++      //  signatureRequestEncoded: string;
++      //  asset: string;
++      //  provider: string;
++      //  chainLabel: string;
++      //  walletLabel: string;
++      //  bipIndex: string;
++      //>(location.href);
+ 
+     const message = data.signatureRequestEncoded;
++    console.log(message)
+     const bipIndex = Number(data.bipIndex);
+ 
+     try {
+@@ -388,8 +407,7 @@ const LedgerPage = () => {
+         </>
+       );
+     } else if (walletState === WALLET_STATE_ENUM.SIGN) {
+-      const { amount, fee, from, to } = queryString.parse(location.search) as any;
+-
++      const { amount, fee, from, to, bipIndex } = queryString.parse(location.search) as any;
+       return (
+         <>
+           <SignView
+@@ -397,6 +415,7 @@ const LedgerPage = () => {
+             fee={fee}
+             fromAddress={from}
+             toAddress={to}
++            bipIndex={bipIndex}
+             waiting={waitingForLedger}
+             onSignPress={onSignPress}
+             transactionSigned={transactionSigned}
+diff --git a/source/web/pages/Ledger/views/accounts/accounts.view.tsx b/source/web/pages/Ledger/views/accounts/accounts.view.tsx
+index 9ceffc12..9f292f38 100644
+--- a/source/web/pages/Ledger/views/accounts/accounts.view.tsx
++++ b/source/web/pages/Ledger/views/accounts/accounts.view.tsx
+@@ -23,7 +23,11 @@ import MUITableCell from '@material-ui/core/TableCell';
+ import TableContainer from '@material-ui/core/TableContainer';
+ import TableRow from '@material-ui/core/TableRow';
+ import Paper from '@material-ui/core/Paper';
+-import { Checkbox, Link } from '@material-ui/core';
++import
++    {
++    Checkbox
++    //Link
++    } from '@material-ui/core';
+ import Button from 'components/Button';
+ import CircularProgress from '@material-ui/core/CircularProgress';
+ 
+@@ -71,8 +75,8 @@ interface IUiTableCell {
+ 
+ // Strings
+ const DAG_STRING: string = 'DAG';
+-const PREV_BUTTON_LABEL_STRING: string = 'PREVIOUS';
+-const NEXT_BUTTON_LABEL_STRING: string = 'NEXT';
++//const PREV_BUTTON_LABEL_STRING: string = 'PREVIOUS';
++//const NEXT_BUTTON_LABEL_STRING: string = 'NEXT';
+ const CANCEL_BUTTON_LABEL_STRING: string = 'Cancel';
+ const IMPORT_BUTTON_LABEL_STRING: string = 'Import';
+ // Numbers
+@@ -96,8 +100,8 @@ let Accounts = ({
+   accountData,
+   onCancelClick,
+   onImportClick,
+-  onNextClick,
+-  onPreviousClick,
++  //onNextClick,
++  //onPreviousClick,
+   onCheckboxChange,
+   checkBoxesState,
+   fetchingPage,
+@@ -181,6 +185,7 @@ let Accounts = ({
+           </TableBody>
+         </Table>
+       </TableContainer>
++      {/* Uncomment to enable pagination (need support for multiple wallets)
+       <div className={styles.pagination}>
+         {!fetchingPage ? (
+           <>
+@@ -199,7 +204,7 @@ let Accounts = ({
+             <span>{NEXT_BUTTON_LABEL_STRING}</span>
+           </>
+         )}
+-      </div>
++      </div> */}
+       <section className={styles.actions}>
+         <div className={styles.buttonWrapper}>
+           <Button
+diff --git a/source/web/pages/Ledger/views/sign/sign.view.tsx b/source/web/pages/Ledger/views/sign/sign.view.tsx
+index 41c3ff38..a8b6ebd9 100644
+--- a/source/web/pages/Ledger/views/sign/sign.view.tsx
++++ b/source/web/pages/Ledger/views/sign/sign.view.tsx
+@@ -3,7 +3,7 @@
+ /////////////////////////
+ 
+ import React from 'react';
+-import { useFiat } from 'hooks/usePrice';
++//import { useFiat } from 'hooks/usePrice';
+ 
+ /////////////////////////
+ // Component Import
+@@ -30,6 +30,7 @@ interface ISignViewProps {
+   fee: string;
+   fromAddress: string;
+   toAddress: string;
++  bipIndex: number;
+   waiting: boolean;
+   transactionSigned: boolean;
+   onSignPress: () => {};
+@@ -44,11 +45,12 @@ const SignView = ({
+   fee,
+   fromAddress,
+   toAddress,
++  bipIndex,
+   waiting,
+   transactionSigned,
+   onSignPress,
+ }: ISignViewProps) => {
+-  const getFiatAmount = useFiat();
++  //const getFiatAmount = useFiat();
+ 
+   return transactionSigned ? (
+     <div className={styles.layout}>
+@@ -71,15 +73,15 @@ const SignView = ({
+             <UpArrowIcon />
+           </div>
+           {Number(amount || 0) + Number(fee || 0)} DAG
+-          <small>
++          {/*}<small>
+             (≈
+             {getFiatAmount(Number(amount || 0) + Number(fee || 0), 8)})
+-          </small>
++          </small>*/}
+         </section>
+         <section className={styles.transaction}>
+           <div className={styles.row}>
+             From
+-            <span>{fromAddress}</span>
++            <span>{fromAddress}{bipIndex}</span>
+           </div>
+           <div className={styles.row}>
+             To
+@@ -88,16 +90,20 @@ const SignView = ({
+           <div className={styles.row}>
+             Transaction Fee
+             <span>
+-              {fee} DAG (≈ {getFiatAmount(Number(fee) || 0, 8)})
++              {fee} DAG{/*} (≈ {getFiatAmount(Number(fee) || 0, 8)})*/}
+             </span>
+           </div>
+         </section>
+         <section className={styles.confirm}>
+           <div className={styles.row}>
+             Max Total
+-            <span>{getFiatAmount(Number(amount || 0) + Number(fee || 0), 8)}</span>
++            {/*}<span>{getFiatAmount(Number(amount || 0) + Number(fee || 0), 8)}</span>*/}
++            <span>{Number(amount || 0) + Number(fee || 0)} DAG</span>
+           </div>
+         </section>
++        <div className={styles.row}>
++          <span>Unofficial Tessellation V2 support for Ledger added by Buzz Greyday.</span>
++        </div>
+         <section className={styles.instruction}>
+           <span>
+             Please connect your Ledger device and open the Constellation app to sign the
+diff --git a/source/web/utils/ledgerBridge/ledgerBridge.util.ts b/source/web/utils/ledgerBridge/ledgerBridge.util.ts
+index 1e66dc83..2d78fc8c 100644
+--- a/source/web/utils/ledgerBridge/ledgerBridge.util.ts
++++ b/source/web/utils/ledgerBridge/ledgerBridge.util.ts
+@@ -1,14 +1,27 @@
+ import { LedgerBridge, LedgerAccount } from '@stardust-collective/dag4-ledger';
++import * as txTranscodeUtil from '@stardust-collective/dag4-ledger/src/lib/tx-transcode';
++// Import keystore transaction
++import { TransactionV2, PostTransactionV2 } from '@stardust-collective/dag4-keystore';
++//////////////////////////////
+ import webHidTransport from '@ledgerhq/hw-transport-webhid';
+ import { dag4 } from '@stardust-collective/dag4';
+ import { DAG_NETWORK } from 'constants/index';
+ import store from 'state/store';
++// import PostTransactionV2 from '@stardust-collective/dag4-keystore/transaction-v2';
++
++const MESSAGE_TYPE_CODES = {
++  SIGN_TRANSACTION: "02",
++  GET_PUBLIC_KEY: "04",
++  SIGN_MESSAGE: "06"
++}
+ 
+ /////////////////////////////
+ // Interface
+ /////////////////////////////
+ 
++
+ class LedgerBridgeUtil {
++
+   /////////////////////////////
+   // Properties
+   /////////////////////////////
+@@ -48,7 +61,10 @@ class LedgerBridgeUtil {
+    * NUMBER_OF_ACCOUNTS
+    * The number of accounts that should be fetched per page request.
+    */
+-  private readonly NUMBER_OF_ACCOUNTS = 5;
++
++  // Pagination has been disabled source/web/pages/Ledger/views/accounts until support is added for multiple wallets
++  //private readonly NUMBER_OF_ACCOUNTS = 5;
++  private readonly NUMBER_OF_ACCOUNTS = 1;
+ 
+   /////////////////////////////
+   // Constructor
+@@ -100,21 +116,83 @@ class LedgerBridgeUtil {
+   public buildTransaction = (
+     amount: number,
+     publicKey: string,
+-    bip44Index: number,
++    bipIndex: number,
+     fromAddress: string,
+     toAddress: string
+   ) => {
+     return this.ledgerBridge.buildTx(
+       amount,
+       publicKey,
+-      bip44Index,
++      bipIndex,
+       fromAddress,
+       toAddress
+     );
+   };
+ 
+-  public signMessage = (message: string, bip44Index: number) => {
+-    return this.ledgerBridge.signMessage(message, bip44Index);
++  //////////////////////////////////////
++  // ENABLE LEDGER TX SUPPORT (START)
++  //////////////////////////////////////
++
++  // Copied from node_modules\@stardust-collective\dag4-keystore\src\key-store.ts
++  async generateTransactionWithHashV2 (amount: number, publicKey: string, from: string, to: string, fee = 0) {
++
++    if (!publicKey) {
++      throw new Error('No public key set');
++    }
++
++    // buildTx
++    const lastRef = await dag4.network.getAddressLastAcceptedTransactionRef(from);
++    const { tx, hash } = dag4.keyStore.prepareTx(amount, to, from, lastRef, fee, '2.0');
++    console.log('prepared transaction with hash: ', hash);
++    const ledgerEncodedTx = txTranscodeUtil.encodeTx(tx, false, false);
++    // bipIndex should be arrived at automatically
++    const bipIndex = 0
++    // signTransaction
++    const results = await this.ledgerBridge.sign(ledgerEncodedTx, bipIndex, MESSAGE_TYPE_CODES.SIGN_TRANSACTION);
++    // add proof to transaction
++    tx.proofs = [{
++      signature: results.signature,
++      id: publicKey.substring(2), // uncompressed publicKey (remove 04 prefix)
++    }];
++
++    try {
++      
++      const success = dag4.keyStore.verify(publicKey, hash, results.signature.toString());
++      console.log('verify: ', success);
++
++
++      if (!success) {
++        throw new Error('Sign-Verify failed');
++      }
++
++      const signatureAddress = dag4.keyStore.getDagAddressFromPublicKey(publicKey.substring(2));
++
++      if (signatureAddress != from) {
++        console.log(`Signature address ${signatureAddress} does not match from address ${from}`);
++      }
++
++      const signatureElt: any = {};
++      signatureElt.id = publicKey.substring(2);
++      signatureElt.signature = results.signature;
++
++      const transaction = TransactionV2.fromPostTransaction(tx as PostTransactionV2);
++      transaction.addSignature(signatureElt);
++
++      return {
++        hash,
++        signedTx: transaction.getPostTransaction()
++      };
++    } catch (error) {
++      console.log('Ledger transaction error:', error);
++    }
++  }
++
++  /////////////////////////////////
++  // ADD LEDGER TX SUPPORT (END)
++  /////////////////////////////////
++
++  public signMessage = (message: string, bipIndex: number) => {
++    return this.ledgerBridge.signMessage(message, bipIndex);
+   };
+ 
+   /**
