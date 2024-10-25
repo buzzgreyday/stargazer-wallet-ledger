@@ -70,7 +70,7 @@ const Login: FC<ILogin> = ({
         align={TEXT_ALIGN_ENUM.CENTER}
         extraStyles={styles.title}
       >
-        Welcome to <TextV3.HeaderLarge>Stargazer Wallet</TextV3.HeaderLarge>
+        Unofficial Ledger <TextV3.HeaderLarge>Stargazer Wallet</TextV3.HeaderLarge>
       </TextV3.HeaderLargeRegular>
       <img src={'/' + LogoImage} className={styles.logo} alt="Stargazer" />
       <form onSubmit={handleSubmit((data: any) => onSubmit(data, false, storeSgw))}>

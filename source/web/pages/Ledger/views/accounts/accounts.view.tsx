@@ -23,7 +23,11 @@ import MUITableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Checkbox, Link } from '@material-ui/core';
+import
+    {
+    Checkbox
+    //Link
+    } from '@material-ui/core';
 import Button from 'components/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -71,8 +75,8 @@ interface IUiTableCell {
 
 // Strings
 const DAG_STRING: string = 'DAG';
-const PREV_BUTTON_LABEL_STRING: string = 'PREVIOUS';
-const NEXT_BUTTON_LABEL_STRING: string = 'NEXT';
+//const PREV_BUTTON_LABEL_STRING: string = 'PREVIOUS';
+//const NEXT_BUTTON_LABEL_STRING: string = 'NEXT';
 const CANCEL_BUTTON_LABEL_STRING: string = 'Cancel';
 const IMPORT_BUTTON_LABEL_STRING: string = 'Import';
 // Numbers
@@ -96,8 +100,8 @@ let Accounts = ({
   accountData,
   onCancelClick,
   onImportClick,
-  onNextClick,
-  onPreviousClick,
+  //onNextClick,
+  //onPreviousClick,
   onCheckboxChange,
   checkBoxesState,
   fetchingPage,
@@ -181,6 +185,7 @@ let Accounts = ({
           </TableBody>
         </Table>
       </TableContainer>
+      {/* Uncomment to enable pagination (need support for multiple wallets)
       <div className={styles.pagination}>
         {!fetchingPage ? (
           <>
@@ -199,7 +204,7 @@ let Accounts = ({
             <span>{NEXT_BUTTON_LABEL_STRING}</span>
           </>
         )}
-      </div>
+      </div> */}
       <section className={styles.actions}>
         <div className={styles.buttonWrapper}>
           <Button

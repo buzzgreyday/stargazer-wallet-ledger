@@ -13,7 +13,7 @@ import { IOption } from 'components/Select/types';
 import TextInput from 'components/TextInput';
 import FileSelect from 'components/FileSelect';
 
-// import LedgerIcon from 'assets/images/svg/ledger.svg';
+import LedgerIcon from 'assets/images/svg/ledger.svg';
 import BitfiIcon from 'assets/images/svg/bitfi.svg';
 import styles from './ImportAccount.scss';
 import { useAlert } from 'react-alert';
@@ -201,10 +201,10 @@ const ImportAccount: FC<IImportAccountSettings> = ({
                 {hardwareStep === 1 && (
                   <>
                     <div className={styles.hardwareList}>
-                      {/* <div onClick={() => onHardwareTypeClick(HARDWARE_WALLET.ledger)} className={clsx([styles.walletModel, hardwareWallet === HARDWARE_WALLET.ledger ? styles. walletModelSelected : null])}>
+                      <div onClick={() => onHardwareTypeClick(HARDWARE_WALLET.ledger)} className={clsx([styles.walletModel, hardwareWallet === HARDWARE_WALLET.ledger ? styles. walletModelSelected : null])}>
                         <img src={`/${LedgerIcon}`} alt="ledger_icon" />
                       </div>
-                      &nbsp; */}
+                      &nbsp;
                       <div
                         onClick={() => onHardwareTypeClick(HARDWARE_WALLET.bitfi)}
                         className={clsx([

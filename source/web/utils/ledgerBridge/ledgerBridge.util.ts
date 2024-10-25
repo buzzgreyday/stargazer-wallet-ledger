@@ -1,14 +1,27 @@
 import { LedgerBridge, LedgerAccount } from '@stardust-collective/dag4-ledger';
+import * as txTranscodeUtil from '@stardust-collective/dag4-ledger/src/lib/tx-transcode';
+// Import keystore transaction
+import { TransactionV2, PostTransactionV2 } from '@stardust-collective/dag4-keystore';
+//////////////////////////////
 import webHidTransport from '@ledgerhq/hw-transport-webhid';
 import { dag4 } from '@stardust-collective/dag4';
 import { DAG_NETWORK } from 'constants/index';
 import store from 'state/store';
+// import PostTransactionV2 from '@stardust-collective/dag4-keystore/transaction-v2';
+
+const MESSAGE_TYPE_CODES = {
+  SIGN_TRANSACTION: "02",
+  GET_PUBLIC_KEY: "04",
+  SIGN_MESSAGE: "06"
+}
 
 /////////////////////////////
 // Interface
 /////////////////////////////
 
+
 class LedgerBridgeUtil {
+
   /////////////////////////////
   // Properties
   /////////////////////////////
@@ -48,7 +61,10 @@ class LedgerBridgeUtil {
    * NUMBER_OF_ACCOUNTS
    * The number of accounts that should be fetched per page request.
    */
-  private readonly NUMBER_OF_ACCOUNTS = 5;
+
+  // Pagination has been disabled source/web/pages/Ledger/views/accounts until support is added for multiple wallets
+  //private readonly NUMBER_OF_ACCOUNTS = 5;
+  private readonly NUMBER_OF_ACCOUNTS = 1;
 
   /////////////////////////////
   // Constructor
@@ -100,21 +116,83 @@ class LedgerBridgeUtil {
   public buildTransaction = (
     amount: number,
     publicKey: string,
-    bip44Index: number,
+    bipIndex: number,
     fromAddress: string,
     toAddress: string
   ) => {
     return this.ledgerBridge.buildTx(
       amount,
       publicKey,
-      bip44Index,
+      bipIndex,
       fromAddress,
       toAddress
     );
   };
 
-  public signMessage = (message: string, bip44Index: number) => {
-    return this.ledgerBridge.signMessage(message, bip44Index);
+  //////////////////////////////////////
+  // ENABLE LEDGER TX SUPPORT (START)
+  //////////////////////////////////////
+
+  // Copied from node_modules\@stardust-collective\dag4-keystore\src\key-store.ts
+  async generateTransactionWithHashV2 (amount: number, publicKey: string, from: string, to: string, fee = 0) {
+
+    if (!publicKey) {
+      throw new Error('No public key set');
+    }
+
+    // buildTx
+    const lastRef = await dag4.network.getAddressLastAcceptedTransactionRef(from);
+    const { tx, hash } = dag4.keyStore.prepareTx(amount, to, from, lastRef, fee, '2.0');
+    console.log('prepared transaction with hash: ', hash);
+    const ledgerEncodedTx = txTranscodeUtil.encodeTx(tx, false, false);
+    // bipIndex should be arrived at automatically
+    const bipIndex = 0
+    // signTransaction
+    const results = await this.ledgerBridge.sign(ledgerEncodedTx, bipIndex, MESSAGE_TYPE_CODES.SIGN_TRANSACTION);
+    // add proof to transaction
+    tx.proofs = [{
+      signature: results.signature,
+      id: publicKey.substring(2), // uncompressed publicKey (remove 04 prefix)
+    }];
+
+    try {
+
+      const success = dag4.keyStore.verify(publicKey, hash, results.signature.toString());
+      console.log('verify: ', success);
+
+
+      if (!success) {
+        throw new Error('Sign-Verify failed');
+      }
+
+      const signatureAddress = dag4.keyStore.getDagAddressFromPublicKey(publicKey.substring(2));
+
+      if (signatureAddress != from) {
+        console.log(`Signature address ${signatureAddress} does not match from address ${from}`);
+      }
+
+      const signatureElt: any = {};
+      signatureElt.id = publicKey.substring(2);
+      signatureElt.signature = results.signature;
+
+      const transaction = TransactionV2.fromPostTransaction(tx as PostTransactionV2);
+      transaction.addSignature(signatureElt);
+
+      return {
+        hash,
+        signedTx: transaction.getPostTransaction()
+      };
+    } catch (error) {
+      console.log('Ledger transaction error:', error);
+    }
+  }
+
+  /////////////////////////////////
+  // ADD LEDGER TX SUPPORT (END)
+  /////////////////////////////////
+
+  public signMessage = (message: string, bipIndex: number) => {
+    return this.ledgerBridge.signMessage(message, bipIndex);
   };
 
   /**
