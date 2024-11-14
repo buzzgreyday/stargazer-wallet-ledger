@@ -3,7 +3,7 @@
 /////////////////////////
 
 import React from 'react';
-//import { useFiat } from 'hooks/usePrice';
+import { useFiat } from 'hooks/usePrice';
 
 /////////////////////////
 // Component Import
@@ -30,7 +30,6 @@ interface ISignViewProps {
   fee: string;
   fromAddress: string;
   toAddress: string;
-  bipIndex: number;
   waiting: boolean;
   transactionSigned: boolean;
   onSignPress: () => {};
@@ -45,12 +44,11 @@ const SignView = ({
   fee,
   fromAddress,
   toAddress,
-  bipIndex,
   waiting,
   transactionSigned,
   onSignPress,
 }: ISignViewProps) => {
-  //const getFiatAmount = useFiat();
+  const getFiatAmount = useFiat();
 
   return transactionSigned ? (
     <div className={styles.layout}>
@@ -73,15 +71,15 @@ const SignView = ({
             <UpArrowIcon />
           </div>
           {Number(amount || 0) + Number(fee || 0)} DAG
-          {/*}<small>
+          <small>
             (≈
             {getFiatAmount(Number(amount || 0) + Number(fee || 0), 8)})
-          </small>*/}
+          </small>
         </section>
         <section className={styles.transaction}>
           <div className={styles.row}>
             From
-            <span>{fromAddress}{bipIndex}</span>
+            <span>{fromAddress}</span>
           </div>
           <div className={styles.row}>
             To
@@ -90,20 +88,16 @@ const SignView = ({
           <div className={styles.row}>
             Transaction Fee
             <span>
-              {fee} DAG{/*} (≈ {getFiatAmount(Number(fee) || 0, 8)})*/}
+              {fee} DAG (≈ {getFiatAmount(Number(fee) || 0, 8)})
             </span>
           </div>
         </section>
         <section className={styles.confirm}>
           <div className={styles.row}>
             Max Total
-            {/*}<span>{getFiatAmount(Number(amount || 0) + Number(fee || 0), 8)}</span>*/}
-            <span>{Number(amount || 0) + Number(fee || 0)} DAG</span>
+            <span>{getFiatAmount(Number(amount || 0) + Number(fee || 0), 8)}</span>
           </div>
         </section>
-        <div className={styles.row}>
-          <span>Unofficial Tessellation V2 support for Ledger added by Buzz Greyday.</span>
-        </div>
         <section className={styles.instruction}>
           <span>
             Please connect your Ledger device and open the Constellation app to sign the

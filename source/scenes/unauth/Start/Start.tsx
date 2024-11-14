@@ -24,7 +24,7 @@ const Start: FC<IStart> = ({ navigation, onImportClicked, onGetStartedClicked })
         align={TEXT_ALIGN_ENUM.CENTER}
         extraStyles={styles.title}
       >
-        Unofficial <TextV3.HeaderLarge>Stargazer Wallet</TextV3.HeaderLarge>
+        Welcome to <TextV3.HeaderLarge>Stargazer Wallet</TextV3.HeaderLarge>
       </TextV3.HeaderLargeRegular>
       <img src={`/${LogoImage}`} className={styles.logo} alt="Stargazer" />
       <ButtonV3

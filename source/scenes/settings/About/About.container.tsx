@@ -6,8 +6,8 @@ import About from './About';
 
 import useVersion from 'hooks/useVersion';
 
-const SUPPORT_LINK = 'https://x.com/buzzgreyday';
-const SUPPORT_LABEL = 'https://x.com/buzzgreyday';
+const SUPPORT_LINK = 'https://t.me/StardustSupport';
+const SUPPORT_LABEL = 'https://t.me/StardustSupport';
 const TERMS_LINK = 'https://www.constellationnetwork.io/stargazer-terms';
 const TERMS_LABEL = 'https://www.constellationnetwork.io/stargazer-terms';
 const PRIVACY_LINK = 'https://www.constellationnetwork.io/stargazer-privacy-policy ';

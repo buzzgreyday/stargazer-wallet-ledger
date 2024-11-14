@@ -17,11 +17,10 @@ global.scrypt = scryptJS.scrypt;
 const app = document.getElementById('app-root');
 
 if (
-  !process.env.ETHERSCAN_API_KEY ||
-  !process.env.POLYGONSCAN_API_KEY ||
-  !process.env.BSCSCAN_API_KEY ||
-  !process.env.SNOWTRACE_API_KEY ||
-  !process.env.TEST_PRIVATE_KEY
+  !process.env.STARGAZER_API_KEY ||
+  !process.env.LATTICE_API_KEY ||
+  !process.env.ELPACA_KEY ||
+  !process.env.ELPACA_VALUE
 ) {
   throw 'Missing .env file or missing definition';
 }

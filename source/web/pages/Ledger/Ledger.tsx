@@ -38,7 +38,7 @@ import { dag4 } from '@stardust-collective/dag4';
 import { decodeFromBase64 } from 'utils/encoding';
 import { getWalletController } from 'utils/controllersUtils';
 import {
-//  StargazerExternalPopups,
+  StargazerExternalPopups,
   StargazerWSMessageBroker,
 } from 'scripts/Background/messaging';
 
@@ -104,7 +104,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     width: 380,
-    height: 620,
+    height: 570,
     backgroundColor: '#ffffff',
     borderRadius: 6,
   },
@@ -284,73 +284,54 @@ const LedgerPage = () => {
   };
 
   const onSignPress = async () => {
+    const { data, message: requestMessage } =
+      StargazerExternalPopups.decodeRequestMessageLocationParams<{
+        amount: string;
+        publicKey: string;
+        from: string;
+        to: string;
+        bipIndex: string;
+      }>(location.href);
 
-    ////////////////////////////////
-    // NEW LEDGER SUPPORT (START)
-    ////////////////////////////////
-
-    //const { data, message: requestMessage } =
-    //  StargazerExternalPopups.decodeRequestMessageLocationParams<{
-    //    amount: string;
-    //    publicKey: string;
-    //    from: string;
-    //    to: string;
-    //    bipIndex: string;
-    //  }>(location.href);
-
-    //const { amount, publicKey, from, to, bipIndex } = data;
-
-    // Took inspiration from 'source/web/pages/Bitfi/Bitfi.tsx'
-    const { amount, publicKey, from, to, fee, bipIndex } = queryString.parse(location.search) as any;
-    console.log(location.search, location.href, bipIndex)
+    const { amount, publicKey, from, to, bipIndex } = data;
 
     try {
       setWaitingForLedger(true);
       await LedgerBridgeUtil.requestPermissions();
       // TODO-421: Update buildTransaction to support PostTransaction and PostTransactionV2
-      //const signedTX = await LedgerBridgeUtil.buildTransaction(
-      //  Number(amount),
-      //  publicKey,
-      //  Number(bipIndex),
-      //  from,
-      //  to
-      //);
-      const { hash, signedTx } = await LedgerBridgeUtil.generateTransactionWithHashV2(Number(amount), publicKey.toLowerCase(), from, to, Number(fee));
-      console.log('signed transaction: ', signedTx, hash);
-      //if (hash) {
-      //  StargazerWSMessageBroker.sendResponseResult(hash, message);
-      //}
-      
-      try {
-        const hashSent = await dag4.account.networkInstance.postTransaction(signedTx);
-        console.log('tx hash sent: ', hashSent);
-      } catch (error) {
-          console.error('error during transaction posting', error);
+      const signedTX = await LedgerBridgeUtil.buildTransaction(
+        Number(amount),
+        publicKey,
+        Number(bipIndex),
+        from,
+        to
+      );
+      const hash = await dag4.network.postTransaction(signedTX);
+      if (hash) {
+        StargazerWSMessageBroker.sendResponseResult(hash, requestMessage);
       }
-
       setWaitingForLedger(false);
       setTransactionSigned(true);
       LedgerBridgeUtil.closeConnection();
-    } catch (error: any) {
-      console.log(error.message || error.toString());
+    } catch (e) {
+      console.log('error', JSON.stringify(e, null, 2));
       setWaitingForLedger(false);
       LedgerBridgeUtil.closeConnection();
     }
   };
 
   const onSignMessagePress = async () => {
-    const { data, message: requestMessage } = queryString.parse(location.search) as any;
-      //StargazerExternalPopups.decodeRequestMessageLocationParams<{
-      //  signatureRequestEncoded: string;
-      //  asset: string;
-      //  provider: string;
-      //  chainLabel: string;
-      //  walletLabel: string;
-      //  bipIndex: string;
-      //>(location.href);
+    const { data, message: requestMessage } =
+      StargazerExternalPopups.decodeRequestMessageLocationParams<{
+        signatureRequestEncoded: string;
+        asset: string;
+        provider: string;
+        chainLabel: string;
+        walletLabel: string;
+        bipIndex: string;
+      }>(location.href);
 
     const message = data.signatureRequestEncoded;
-    console.log(message)
     const bipIndex = Number(data.bipIndex);
 
     try {
@@ -407,7 +388,8 @@ const LedgerPage = () => {
         </>
       );
     } else if (walletState === WALLET_STATE_ENUM.SIGN) {
-      const { amount, fee, from, to, bipIndex } = queryString.parse(location.search) as any;
+      const { amount, fee, from, to } = queryString.parse(location.search) as any;
+
       return (
         <>
           <SignView
@@ -415,7 +397,6 @@ const LedgerPage = () => {
             fee={fee}
             fromAddress={from}
             toAddress={to}
-            bipIndex={bipIndex}
             waiting={waitingForLedger}
             onSignPress={onSignPress}
             transactionSigned={transactionSigned}

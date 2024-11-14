@@ -2,12 +2,10 @@ import { addAsset, removeAsset, updateAssetDecimals } from 'state/assets';
 import store from 'state/store';
 import IVaultState, { ActiveNetwork, AssetType } from 'state/vault/types';
 import {
-  TOKEN_INFO_API,
   ETHEREUM_DEFAULT_LOGO,
   AVALANCHE_DEFAULT_LOGO,
   BSC_DEFAULT_LOGO,
   POLYGON_DEFAULT_LOGO,
-  COINGECKO_API_KEY_PARAM,
   CONSTELLATION_DEFAULT_LOGO,
 } from 'constants/index';
 import { KeyringNetwork } from '@stardust-collective/dag4-keyring';
@@ -47,6 +45,17 @@ import { IAssetInfoState } from 'state/assets/types';
 import { clearCustomAsset, clearSearchAssets as clearSearch } from 'state/erc20assets';
 import { getAccountController } from 'utils/controllersUtils';
 import { getDagAddress, getEthAddress } from 'utils/wallet';
+import { getElPacaInfo, claimElpaca as claimElPacaFn } from 'state/user/api';
+import { dag4 } from '@stardust-collective/dag4';
+import { decodeFromBase64, encodeToBase64 } from 'utils/encoding';
+import {
+  clearClaimAddress as clearClaimAddressFn,
+  clearClaim as clearClaimFn,
+  clearClaimHash as clearClaimHashFn,
+} from 'state/user';
+import { ELPACA_VALUE } from 'utils/envUtil';
+import { ExternalApi } from 'utils/httpRequests/apis';
+import { ExternalService } from 'utils/httpRequests/constants';
 
 // Default logos
 const DEFAULT_LOGOS = {
@@ -87,10 +96,15 @@ export interface IAssetsController {
   fetchQuote: (data: GetQuoteRequest) => Promise<void>;
   fetchBestDeal: (data: GetBestDealRequest) => Promise<void>;
   fetchPaymentRequest: (data: PaymentRequestBody) => Promise<void>;
+  fetchElpacaStreak: () => Promise<void>;
+  claimElpaca: () => Promise<void>;
   setRequestId: (value: string) => void;
   clearErrors: () => void;
   clearBestDeal: () => void;
   clearResponse: () => void;
+  clearClaim: () => void;
+  clearClaimHash: () => void;
+  clearClaimAddress: () => void;
   setSelectedProvider: (provider: IProviderInfoState) => void;
   clearPaymentRequest: () => void;
 }
@@ -187,11 +201,10 @@ const AssetsController = (): IAssetsController => {
     const platform = getPlatformFromMainnet(networkType);
 
     try {
-      tokenData = await (
-        await fetch(
-          `${TOKEN_INFO_API}/${platform}/contract/${address}?${COINGECKO_API_KEY_PARAM}`
-        )
-      ).json();
+      const tokenDataResponse = await ExternalApi.get(
+        `${ExternalService.CoinGecko}/coins/${platform}/contract/${address}`
+      );
+      tokenData = tokenDataResponse?.data || {};
     } catch (err) {
       console.log('Token Error:', err);
     }
@@ -280,9 +293,56 @@ const AssetsController = (): IAssetsController => {
     await store.dispatch<any>(getBestDeal(data));
   };
 
+  const claimElpaca = async () => {
+    const { activeWallet } = store.getState().vault;
+    const { elpaca } = store.getState().user;
+
+    const address = getDagAddress(activeWallet);
+    if (!address) return;
+
+    const token = elpaca?.streak?.data?.nextToken ?? '';
+
+    const data = {
+      StreakUpdate: {
+        address,
+        token,
+      },
+    };
+
+    const dataEncoded = encodeToBase64(JSON.stringify(data));
+    const signature = await dag4.keyStore.dataSign(
+      decodeFromBase64(ELPACA_VALUE),
+      dataEncoded
+    );
+    store.dispatch<any>(claimElPacaFn({ address, signature, token }));
+  };
+
+  const fetchElpacaStreak = async (): Promise<void> => {
+    const { elpaca } = store.getState().user;
+    const { activeWallet } = store.getState().vault;
+
+    const dagAddress = elpaca?.claim?.data?.address ?? getDagAddress(activeWallet);
+    if (!dagAddress) return;
+
+    store.dispatch<any>(getElPacaInfo(dagAddress));
+  };
+
+  const clearClaim = () => {
+    store.dispatch<any>(clearClaimFn());
+  };
+
+  const clearClaimHash = () => {
+    store.dispatch<any>(clearClaimHashFn());
+  };
+
+  const clearClaimAddress = () => {
+    store.dispatch<any>(clearClaimAddressFn());
+  };
+
   const clearBestDeal = (): void => {
     store.dispatch<any>(clearBestDealDispatch());
   };
+
   const clearResponse = (): void => {
     store.dispatch<any>(clearResponseDispatch());
   };
@@ -316,6 +376,8 @@ const AssetsController = (): IAssetsController => {
     searchERC20Assets,
     clearSearchAssets,
     fetchERC20Assets,
+    fetchElpacaStreak,
+    claimElpaca,
     addAssetFn,
     removeERC20AssetFn,
     fetchQuote,
@@ -327,6 +389,9 @@ const AssetsController = (): IAssetsController => {
     clearPaymentRequest,
     clearBestDeal,
     clearResponse,
+    clearClaim,
+    clearClaimHash,
+    clearClaimAddress,
   };
 };
 

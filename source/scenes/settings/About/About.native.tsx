@@ -25,7 +25,7 @@ const About: FC<IAboutSettings> = ({
   ]);
   return (
     <View style={styles.about}>
-      <Text style={styles.text}>Stargazer Ledger Wallet v{versionMajorMinor}</Text>
+      <Text style={styles.text}>Stargazer Wallet v{versionMajorMinor}</Text>
       <Text style={styles.text}>Version: {version}</Text>
       <Text style={styles.text}>
         Support:{' '}
