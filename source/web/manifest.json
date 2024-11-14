@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Stargazer Ledger Wallet",
-  "version": "5.1.0",
+  "name": "Stargazer Wallet",
+  "version": "5.1.2",
   "icons": {
     "16": "assets/icons/favicon-16.png",
     "32": "assets/icons/favicon-32.png",
@@ -32,7 +32,7 @@
       "48": "/assets/icons/favicon-48.png",
       "128": "/assets/icons/favicon-128.png"
     },
-    "default_title": "Stargazer Ledger",
+    "default_title": "Stargazer",
     "__firefox__browser_style": false
   },
   "__chrome__options_page": "options.html",

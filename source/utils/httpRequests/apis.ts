@@ -1,12 +1,16 @@
 import axios from 'axios';
 
-import { latticeInterceptor } from './interceptors';
+import { interceptorRequest, interceptorResponseRejected } from './interceptors';
 import { EXTERNAL_REQUESTS_BASE_URL } from 'constants/index';
 
-const ExplorerApi = axios.create({
+const ExternalApi = axios.create({
   baseURL: EXTERNAL_REQUESTS_BASE_URL,
 });
 
-ExplorerApi.interceptors.request.use(latticeInterceptor);
+ExternalApi.interceptors.request.use(interceptorRequest);
+ExternalApi.interceptors.response.use(
+  (response) => response,
+  interceptorResponseRejected
+);
 
-export { ExplorerApi };
+export { ExternalApi };
