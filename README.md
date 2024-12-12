@@ -4,6 +4,8 @@ This is an **unofficial release** of Stargazer Wallet with Tessellation v2 suppo
 
 **DISCLAIMER: Since the Ledger app isn't officially supported and won't receive updates, it's not advised to use this to store your life savings.**
 
+<a href="https://www.buymeacoffee.com/buzzgreyday" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 ## Walkthrough
 
 To make thie process as accessible as possible this walkthrough doesn't cover building/compiling the Stargazer extension from source. You can choose to build/compile the extension yourself using these [instructions](BUILD.md). I'm currently looking for ways to make the process less nerdy.
